@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 **Scenario 1.**
 
 All collaborators work on the _same online collaborative spreadsheet_ (Google sheets).
-We want to upload the google spreadsheet in R to perform the analysis.
+We want to upload the google spreadsheet into R to perform the analysis.
 
 **Scenario 2.**
 
@@ -87,11 +87,11 @@ data <- gs_read(ss=worksheet, ws = "Sheet1", verbose=FALSE)
 
 - Secure (dataset stays on the private domain)
 - Everyone can work on the same worksheet and avoid conflicts
-- Individual sheet are easily accessible
+- Individual sheets are easily accessible
 
-# Scenario 2. Each collaborator works on _different spreadsheets_
+# Scenario 2. Each collaborator works on a _different spreadsheet_
 
-## Scenario 2. Each collaborator works on _different spreadsheets_
+## Scenario 2. Each collaborator works on a _different spreadsheet_
 
 ### **Note: For this scenario, I assume that headers are consistent among files.**
 
@@ -108,9 +108,9 @@ install.packages('xlsx')
 data <- read.xlsx('file.csv')
 ```
 
-## Scenario 2. Each collaborator works on _different spreadsheets_
+## Scenario 2. Each collaborator works on a _different spreadsheet_
 
-### In a 3-4 collaborators context...
+### With 3 to 4 collaborators...
 
 ```r
 data1 <- read.csv('file1.csv')
@@ -128,20 +128,27 @@ data4 <- read.csv('file4.csv')
 ### Use the same headers, put all of them in a folder then...
 
 ```r
-# create a vector contains the path to all files
+# create a vector containing the paths to all files
 files <- list.files('path/to/folder', pattern='^F.*csv$', full.names=TRUE)
 
 # Create a empty list
 ls_csv <- list()
 
-# The loop populates each level of the list with the content of each files
+# The loop populates each level of the list with the content of each file
 for (i in 1:length(files)){
   print(files[i])
   ls_csv[[i]] <- read.csv(files[i])
 }
 
-# We finaly apply the function rbind at each level of the list
+# Finally, we apply the function rbind at each level of the list
 data <- do.call('rbind', ls_csv)
 ```
 
-# Exercice
+# Exercise
+
+1. Create several fake files (up to 3 CSV files) with common headers
+2. Save them in a same folder
+3. Open a R script
+4. Write down a function merging them (use the previous slide to help)
+
+**Note: Don't hesitate.. if you have any questions, we're here to help you!**

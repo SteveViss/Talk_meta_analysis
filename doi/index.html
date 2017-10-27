@@ -20,7 +20,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Handle your references through DOI <a href="https://github.com/SteveViss/Talk_bib"><i class="fa fa-github" aria-hidden="true"></i></a>',
+                title: 'Handle your references through <code>DOI</code> <br> <a href="https://github.com/SteveViss/Talk_meta_analysis"><i class="fa fa-github" aria-hidden="true"></i></a>',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -102,146 +102,119 @@
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>What are DOI?</h2></hgroup><article  id="what-are-doi">
+<slide class=''><hgroup><h2>Briefly, what&#39;s a DOI?</h2></hgroup><article  id="briefly-whats-a-doi">
 
-</article></slide><slide class=''><hgroup><h2>DOI</h2></hgroup><article  id="doi">
-
-<ul class = 'build'>
-<li>definition</li>
-<li>how to find them</li>
+<ul>
+<li>DOI for <code>Digital object identifier</code></li>
+<li><em>Unique identifier</em> for digital objects (movies to scientific articles)</li>
+<li>At publication stage, each publishers has the responsability to ask for a DOI</li>
+<li><code>ISO 26324:2012</code></li>
 </ul>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Retrieve data from DOI</h2></hgroup><article  id="retrieve-data-from-doi">
 
-</article></slide><slide class=''><hgroup><h2>How does it work?</h2></hgroup><article  id="how-does-it-work">
+</article></slide><slide class=''><hgroup><h2>How can I take advantage of DOI?</h2></hgroup><article  id="how-can-i-take-advantage-of-doi">
 
-<ul class = 'build'>
-<li><a href='https://www.crossref.org/' title=''>crossref</a></li>
-<li><a href='https://github.com/ropensci/rcrossref' title=''>rcrossref</a></li>
+<ul>
+<li><a href='https://www.crossref.org/' title=''>crossref</a> offers web service to retrieve metadata from DOI.</li>
+<li><a href='https://github.com/ropensci/rcrossref' title=''>rcrossref</a> is a R package based on this web service.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Retrieve data</h2></hgroup><article  id="retrieve-data">
 
-<p>Install the package</p>
+<h3>Install the package</h3>
 
 <pre class = 'prettyprint lang-r'>install.packages(&#39;rcrossref&#39;)</pre>
 
 <pre class = 'prettyprint lang-r'>library(&#39;rcrossref&#39;)
-vecDOI &lt;- cr_r(10)
+vecDOI &lt;- cr_r(3)
 vecDOI[1]</pre>
 
-<pre >R&gt;&gt;  [1] &quot;10.1016/j.hal.2005.08.001&quot;</pre>
+<pre >R&gt;&gt;  [1] &quot;10.1016/j.ifacol.2016.07.466&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>Retrieve data</h2></hgroup><article  id="retrieve-data-1">
+</article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi">
 
-<pre class = 'prettyprint lang-r'>bib1 = cr_cn(vecDOI[1], format=&#39;bibentry&#39;)
+<h3><code>Bibtex</code> is a suitable format (supported by Mendeley) which contains all the metadata of an article.</h3>
+
+<pre class = 'prettyprint lang-r'>bib1 &lt;- cr_cn(vecDOI[1], format=&#39;bibentry&#39;)
 str(bib1)</pre>
 
 <pre >R&gt;&gt;  List of 1
-R&gt;&gt;   $ Croci_2006:Class &#39;bibentry&#39;  hidden list of 1
-R&gt;&gt;    ..$ Croci_2006:List of 11
-R&gt;&gt;    .. ..$ doi      : chr &quot;10.1016/j.hal.2005.08.001&quot;
-R&gt;&gt;    .. ..$ url      : chr &quot;https://doi.org/10.1016%2Fj.hal.2005.08.001&quot;
-R&gt;&gt;    .. ..$ year     : chr &quot;2006&quot;
-R&gt;&gt;    .. ..$ month    : chr &quot;apr&quot;
+R&gt;&gt;   $ Atitallah_2016:Class &#39;bibentry&#39;  hidden list of 1
+R&gt;&gt;    ..$ Atitallah_2016:List of 10
+R&gt;&gt;    .. ..$ doi      : chr &quot;10.1016/j.ifacol.2016.07.466&quot;
+R&gt;&gt;    .. ..$ url      : chr &quot;https://doi.org/10.1016%2Fj.ifacol.2016.07.466&quot;
+R&gt;&gt;    .. ..$ year     : chr &quot;2016&quot;
 R&gt;&gt;    .. ..$ publisher: chr &quot;Elsevier {BV}&quot;
-R&gt;&gt;    .. ..$ volume   : chr &quot;5&quot;
-R&gt;&gt;    .. ..$ number   : chr &quot;3&quot;
-R&gt;&gt;    .. ..$ pages    : chr &quot;266--274&quot;
-R&gt;&gt;    .. ..$ author   :List of 9
+R&gt;&gt;    .. ..$ volume   : chr &quot;49&quot;
+R&gt;&gt;    .. ..$ number   : chr &quot;10&quot;
+R&gt;&gt;    .. ..$ pages    : chr &quot;19--24&quot;
+R&gt;&gt;    .. ..$ author   :List of 3
 R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
 R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;L.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Croci&quot;
+R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;Asma&quot;
+R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Atitallah&quot;
 R&gt;&gt;    .. .. .. .. ..$ role   : NULL
 R&gt;&gt;    .. .. .. .. ..$ email  : NULL
 R&gt;&gt;    .. .. .. .. ..$ comment: NULL
 R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
 R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;L.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Cozzi&quot;
+R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;SaÏda&quot;
+R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Bedoui&quot;
 R&gt;&gt;    .. .. .. .. ..$ role   : NULL
 R&gt;&gt;    .. .. .. .. ..$ email  : NULL
 R&gt;&gt;    .. .. .. .. ..$ comment: NULL
 R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
 R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;E.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Suffredini&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;G.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Ciccaglioni&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;L.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Toti&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;A.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Milandri&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;A.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Ceredi&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;M.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Benzi&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;R.&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Poletti&quot;
+R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;Kamel&quot;
+R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Abderrahim&quot;
 R&gt;&gt;    .. .. .. .. ..$ role   : NULL
 R&gt;&gt;    .. .. .. .. ..$ email  : NULL
 R&gt;&gt;    .. .. .. .. ..$ comment: NULL
 R&gt;&gt;    .. .. ..- attr(*, &quot;class&quot;)= chr &quot;person&quot;
-R&gt;&gt;    .. ..$ title    : chr &quot;Characterization of microalgae and associated bacteria collected from shellfish harvesting areas&quot;
-R&gt;&gt;    .. ..$ journal  : chr &quot;Harmful Algae&quot;
+R&gt;&gt;    .. ..$ title    : chr &quot;An Optimal Two Stage Identification Algorithm for Discrete Hammerstein Time Delay Systems&quot;
+R&gt;&gt;    .. ..$ journal  : chr &quot;{IFAC}-{PapersOnLine}&quot;
 R&gt;&gt;    .. ..- attr(*, &quot;bibtype&quot;)= chr &quot;Article&quot;
-R&gt;&gt;    .. ..- attr(*, &quot;key&quot;)= chr &quot;Croci_2006&quot;
+R&gt;&gt;    .. ..- attr(*, &quot;key&quot;)= chr &quot;Atitallah_2016&quot;
 R&gt;&gt;   - attr(*, &quot;class&quot;)= chr &quot;bibentry&quot;
 R&gt;&gt;   - attr(*, &quot;strings&quot;)= Named chr(0) 
 R&gt;&gt;    ..- attr(*, &quot;names&quot;)= chr(0)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Retrieve data</h2></hgroup><article  id="retrieve-data-2">
+<p>Other format are accessible: TODO</p>
 
-<pre class = 'prettyprint lang-r'>lsf &lt;- lapply(vecDOI, cr_cn, format=&quot;bibentry&quot;)</pre>
+</article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi-1">
 
-<pre >R&gt;&gt;  ignoring entry &#39;2008&#39; (line 1) because :
-R&gt;&gt;     A bibentry of bibtype &#39;Article&#39; has to specify the field: author</pre>
+<h3>Looping of the DOI vector</h3>
 
-<pre class = 'prettyprint lang-r'>lsaut &lt;- lapply(lsf, function(x) x$author)
-lsjnl &lt;- lapply(lsf, function(x) x$journal)</pre>
+<pre class = 'prettyprint lang-r'>lsf &lt;- lapply(vecDOI, cr_cn, format=&quot;bibentry&quot;)
+nlevels(lsf)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Retrieve data</h2></hgroup><article  id="retrieve-data-3">
+<pre >R&gt;&gt;  [1] 0</pre>
+
+</article></slide><slide class=''><hgroup><h2>Access the metadata</h2></hgroup><article  id="access-the-metadata">
+
+<h3>Get the author of each articles</h3>
+
+<pre class = 'prettyprint lang-r'>lsaut &lt;- lapply(lsf, function(x) x$author)</pre>
+
+<h3>Get the journal of each articles</h3>
+
+<pre class = 'prettyprint lang-r'>lsjnl &lt;- lapply(lsf, function(x) x$journal)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Perform queries</h2></hgroup><article  id="perform-queries">
 
 <pre class = 'prettyprint lang-r'>unlist(lsjnl)</pre>
 
-<pre >R&gt;&gt;  [1] &quot;Harmful Algae&quot;                                        
-R&gt;&gt;  [2] &quot;Journal of Periodontology&quot;                            
-R&gt;&gt;  [3] &quot;International Journal of Internet Protocol Technology&quot;
-R&gt;&gt;  [4] &quot;Seminars in Dialysis&quot;                                 
-R&gt;&gt;  [5] &quot;Physics Letters A&quot;                                    
-R&gt;&gt;  [6] &quot;The Journal of Geology&quot;                               
-R&gt;&gt;  [7] &quot;Journal of International Criminal Justice&quot;</pre></article></slide>
+<pre >R&gt;&gt;  [1] &quot;{IFAC}-{PapersOnLine}&quot;    &quot;Annals of Mathematics&quot;   
+R&gt;&gt;  [3] &quot;Seminars in Perinatology&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>Export to csv format</h2></hgroup><article  id="export-to-csv-format">
+
+</article></slide><slide class=''><hgroup><h2>Export to bibtex format</h2></hgroup><article  id="export-to-bibtex-format">
+
+</article></slide><slide class=''><hgroup><h2>Bibliometric studies</h2></hgroup><article  id="bibliometric-studies">
+
+<!-- Mettre figure du papier CCvsBL --></article></slide>
 
 
   <slide class="backdrop"></slide>

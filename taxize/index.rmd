@@ -24,9 +24,9 @@ knitr::opts_chunk$set(
 
 ## What is `taxize`?
 
-> taxize allows users to search over many taxonomic data sources for species names (scientific and common) and download up and downstream taxonomic hierarchical information
+> taxize allows users to search over many taxonomic data sources for species names (scientific and common) and download taxonomic hierarchical information.
 
-In brief, `taxize` is a R package developed to clean and manage taxonomic informations.
+In brief, `taxize` is a R package developed to clean and manage taxonomic information.
 
 ### Install taxize with
 
@@ -37,7 +37,7 @@ devtools::install_github("ropensci/taxize")
 
 Tutorial available at [ROpenSci website](https://ropensci.org/tutorials/taxize_tutorial/)
 
-## Why use `taxize` in a meta-analyses context?
+## Why use `taxize` in meta-analyses context?
 
 ### If your meta-analyses involve working on organisms with several collaborators:
 
@@ -53,7 +53,7 @@ plants <- c("Poa annua", "Poa anua", " Poa annua")
 
 _Monterey cypress_ has been *Callitropsis macrocarpa*, *Cupressus macrocarpa*, *Cupressus hartwegii*, *Neocupressus macrocarpa*, then back to *Callitropsis macrocarpa*...
 
-## Why to use `taxize`?
+## Why use `taxize`?
 
 Taking advantage of the existant taxonomic backbones...
 
@@ -84,16 +84,16 @@ Fuzzy matches could be done with several taxonomy providers:
 taxize::gnr_datasources()
 ```
 
-## Study case 2: Inconsistent taxonomic informations
+## Study case 2: Inconsistent taxonomic information
 
-If we go back, to our _Monterey cypress_ example with a fictive scenario:
+If we go back, to our _Monterey cypress_ example with a scenario:
 
 - Find one publication with *Cupressus macrocarpa* in **1987**
 - And another with *Callitropsis macrocarpa* in **1990**
 
 I want to harmonize them with the newest species name for _Monterey cypress_.
 
-## Study case 2: Inconsistent taxonomic informations
+## Study case 2: Inconsistent taxonomic information
 
 I'll use [ITIS](https://www.itis.gov/) to perform this task.
 
@@ -101,7 +101,7 @@ I'll use [ITIS](https://www.itis.gov/) to perform this task.
 - **Second step:** Check if this these _TSN_ are valid and if not get the valid one with the accepted names.
 
 
-## Study case 2: Inconsistent taxonomic informations
+## Study case 2: Inconsistent taxonomic information
 
 - **First step:** Get the taxonomic serial number (_TSN_) for each species names.
 
@@ -110,7 +110,7 @@ mysps <- c("Callitropsis macrocarpa", "Cupressus macrocarpa")
 (tsn <- taxize::get_tsn(mysps, accepted = FALSE, verbose=FALSE))
 ```
 
-## Study case 2: Inconsistent taxonomic informations
+## Study case 2: Inconsistent taxonomic information
 
 - **Second step:** Check if this these _TSN_ are valid and if not get the valid one with the accepted names.
 
@@ -121,7 +121,7 @@ library(taxize)
 
 ## Common name
 
-### Retrieve the english common name from valid scientific name
+### Retrieve the English common name from valid scientific name
 
 ```{r eval=TRUE, echo=TRUE }
 sci2comm('Cupressus macrocarpa', db = 'itis')
@@ -129,7 +129,7 @@ sci2comm('Cupressus macrocarpa', db = 'itis')
 
 ## Classification
 
-### Retrieve higher taxonomic informations
+### Retrieve higher taxonomic information
 
 ```{r eval=TRUE, echo=TRUE }
 classification(822598, db = 'itis')
@@ -138,7 +138,7 @@ classification(822598, db = 'itis')
 ## Limitations
 
 1. Some species might be absent from databases.
-2. Some taxonomic groups are under-represented (e.g. nonvascular plants, some insects family etc.)
+2. Some taxonomic groups are under-represented (e.g. nonvascular plants, some insects families etc.)
 
 ## Documentation
 
@@ -153,4 +153,12 @@ classification(822598, db = 'itis')
 knitr::include_graphics("../assets/img/ropensci.png")
 ```
 
-# Exercice
+## Exercise
+
+```r
+TODO
+```
+
+1. Using the `taxize` package, clean up this vector using the `gnr_resolve()` function and ITIS as taxonomic provider.
+2. Change the provider (`data_source_ids` argument) in favor to Tropica and see what happen.
+3. Try getting higher taxonomic information for your own species list.

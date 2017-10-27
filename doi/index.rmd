@@ -1,11 +1,11 @@
 ---
-title: 'Handle your references through `DOI` <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_meta_analysis)'
-date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
+title: 'Handle your references through `DOI` <br> [<i class=fa fa-github aria-hidden=true></i>](https://github.com/SteveViss/Talk_meta_analysis)'
+date: `r paste0(format(Sys.time(), '%d %B %Y'))`
 author: 'Steve Vissault and Kevin Cazelles'
 # lang: french
 output:
     ioslides_presentation:
-        incremental: true
+        incremental: false
         widescreen: true
         includes:
           in_header: ../assets/kcheader.html  
@@ -14,16 +14,16 @@ output:
 
 
 
-```{r dsetup, results = "hide", echo = FALSE, message = FALSE}
+```{r dsetup, results = hide, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   fig.align='center',
   tidy=FALSE,
-  comment="R>> ",
+  comment=R>> ,
   size = 'small'
 )
 ```
 
-## Briefly, What's a DOI?
+## Briefly, what's a DOI?
 
 - DOI for `Digital object identifier`
 - _Unique identifier_ for digital objects (movies to scientific articles)
@@ -34,9 +34,8 @@ knitr::opts_chunk$set(
 
 ## How can I take advantage of DOI?
 
-[crossref](https://www.crossref.org/) offers web service to retrieve metadata from DOI.
-
-[rcrossref](https://github.com/ropensci/rcrossref) is a R package based on this web service.
+- [crossref](https://www.crossref.org/) offers web service to retrieve metadata from DOI.
+- [rcrossref](https://github.com/ropensci/rcrossref) is a R package based on this web service.
 
 
 ## Retrieve data
@@ -49,8 +48,7 @@ install.packages('rcrossref')
 
 ```{r}
 library('rcrossref')
-vecDOI <- cr_r(3)
-vecDOI[1]
+vecDOI <- c('10.1111/brv.12359','10.1649/0010-065X-68.2.343','10.1890/14-1858.1')
 ```
 
 ## Get the bibtex from DOI
@@ -58,45 +56,45 @@ vecDOI[1]
 ### `Bibtex` is a suitable format (supported by Mendeley) which contains all the metadata of an article.
 
 ```{r}
-bib1 <- cr_cn(vecDOI[1], format='bibentry')
+bib1 <- cr_cn(vecDOI[1], format='bibentry', style = "apa")
 str(bib1)
 ```
 
-Other format are accessible: TODO
+### Diverse format available:
+
+rdf-xml, turtle, citeproc-json, citeproc-json-
+ish, text, ris, bibtex (default), crossref-xml, datacite-xml,bibentry,
+or crossref-tdm
 
 ## Get the bibtex from DOI
 
 ### Looping of the DOI vector
 
 ```{r}
-lsf <- lapply(vecDOI, cr_cn, format="bibentry")
+lsf <- lapply(vecDOI, cr_cn, format=bibentry)
 nlevels(lsf)
 ```
 
-## Access the metadata
-
-### Get the author of each articles
+## Get the author of each articles
 
 ```{r}
 lsaut <- lapply(lsf, function(x) x$author)
+lsaut[1]
 ```
 
-### Get the journal of each articles
+## Get the journal of each articles
 
 ```{r}
 lsjnl <- lapply(lsf, function(x) x$journal)
+lsjnl[1]
 ```
 
 ## Perform queries
 
-```{r ex4}
-unlist(lsjnl)
+```{r}
+cr_cn(query="biodiversity")
 ```
-
-## Export to csv format
-
-## Export to bibtex format
 
 ## Bibliometric studies
 
-<!-- Mettre figure du papier CCvsBL -->
+![](../assets/img/ccvspb.png)
