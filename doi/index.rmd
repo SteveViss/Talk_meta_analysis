@@ -54,7 +54,16 @@ vecDOI <- c('10.1111/brv.12359','10.1649/0010-065X-68.2.343','10.1890/14-1858.1'
 
 ### `Bibtex` is a suitable format (supported by Mendeley) which contains all the metadata of an article.
 
-```{r}
+```{r, results="asis"}
+bib1 <- cr_cn(vecDOI[2], format='bibtex', style = "apa")
+bib1
+```
+
+## Get the bibtex from DOI
+
+### `Bibtex` is a suitable format (supported by Mendeley) which contains all the metadata of an article.
+
+```{r eval=FALSE}
 bib1 <- cr_cn(vecDOI[1], format='bibtex', style = "apa")
 bib1
 ```

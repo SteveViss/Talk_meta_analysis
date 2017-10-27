@@ -133,16 +133,23 @@ vecDOI &lt;- c(&#39;10.1111/brv.12359&#39;,&#39;10.1649/0010-065X-68.2.343&#39;,
 
 <h3><code>Bibtex</code> is a suitable format (supported by Mendeley) which contains all the metadata of an article.</h3>
 
-<pre class = 'prettyprint lang-r'>bib1 &lt;- cr_cn(vecDOI[1], format=&#39;bibtex&#39;, style = &quot;apa&quot;)
+<pre class = 'prettyprint lang-r'>bib1 &lt;- cr_cn(vecDOI[2], format=&#39;bibtex&#39;, style = &quot;apa&quot;)
 bib1</pre>
 
-<pre >R&gt;&gt;  [1] &quot;@article{Kissling_2017,\n\tdoi = {10.1111/brv.12359},\n\turl = {https://doi.org/10.1111%2Fbrv.12359},\n\tyear = 2017,\n\tmonth = {aug},\n\tpublisher = {Wiley-Blackwell},\n\tauthor = {W. Daniel Kissling and Jorge A. Ahumada and Anne Bowser and Miguel Fernandez and N{\\&#39;{e}}stor Fern{\\&#39;{a}}ndez and Enrique Alonso Garc{\\&#39;{\\i}}a and Robert P. Guralnick and Nick J. B. Isaac and Steve Kelling and Wouter Los and Louise McRae and Jean-Baptiste Mihoub and Matthias Obst and Monica Santamaria and Andrew K. Skidmore and Kristen J. Williams and Donat Agosti and Daniel Amariles and Christos Arvanitidis and Lucy Bastin and Francesca De Leo and Willi Egloff and Jane Elith and Donald Hobern and David Martin and Henrique M. Pereira and Graziano Pesole and Johannes Peterseil and Hannu Saarenmaa and Dmitry Schigel and Dirk S. Schmeller and Nicola Segata and Eren Turak and Paul F. Uhlir and Brian Wee and Alex R. Hardisty},\n\ttitle = {Building essential biodiversity variables ({EBVs}) of species distribution and abundance at a global scale},\n\tjournal = {Biological Reviews}\n}&quot;</pre>
+<p>[1] <a href='mailto:%22@article%7BBrousseau_2014' title=''>&quot;@article{Brousseau_2014</a>,= {10.1649/0010-065x-68.2.343},= {<a href='https://doi.org/10.1649%2F0010-065x-68.2.343' title=''>https://doi.org/10.1649%2F0010-065x-68.2.343</a>},= 2014,= {jun},= {Coleopterists Society},= {68},= {2},= {343&#8211;344},= {Pierre-Marc Brousseau and Dominique Gravel and I. Tanya Handa},= {First Record In Canada {ofOnthophilus} {pluricostatusLeConte} (Coleoptera: Histeridae) and a New Mention for the Rare {SpeciesLordithon} niger(Gravenhorst) (Coleoptera: Staphylinidae)},= {The Coleopterists Bulletin}}&quot;</p>
+
+</article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi-1">
+
+<h3><code>Bibtex</code> is a suitable format (supported by Mendeley) which contains all the metadata of an article.</h3>
+
+<pre class = 'prettyprint lang-r'>bib1 &lt;- cr_cn(vecDOI[1], format=&#39;bibtex&#39;, style = &quot;apa&quot;)
+bib1</pre>
 
 <h3>Diverse format available:</h3>
 
 <p>rdf-xml, turtle, citeproc-json, citeproc-json- ish, text, ris, bibtex (default), crossref-xml, datacite-xml,bibentry, or crossref-tdm</p>
 
-</article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi-1">
+</article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi-2">
 
 <h3>Looping of the DOI vector</h3>
 
