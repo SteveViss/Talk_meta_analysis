@@ -1,6 +1,6 @@
 ---
-title: 'Handling DOI [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_bib)'
-date: "`r paste0('Last update: ', format(Sys.time(), '%d %B %Y'))`"
+title: 'Handle your references through `DOI` <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_meta_analysis)'
+date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
 author: 'Steve Vissault and Kevin Cazelles'
 # lang: french
 output:
@@ -8,7 +8,7 @@ output:
         incremental: true
         widescreen: true
         includes:
-          in_header: kcheader.html  
+          in_header: ../assets/kcheader.html  
         #logo: ./img/logo.png
 ---
 
@@ -23,57 +23,80 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Briefly, What's a DOI?
 
-
-
-# What are DOI? (we may cover it before)
-
-## DOI
-
-- definition
-- how to find them
-
+- DOI for `Digital object identifier`
+- _Unique identifier_ for digital objects (movies to scientific articles)
+- At publication stage, each publishers has the responsability to ask for a DOI
+- `ISO 26324:2012`
 
 # Retrieve data from DOI
 
-## How does it work?
+## How can I take advantage of DOI?
 
-- [crossref](https://www.crossref.org/)
-- [rcrossref](https://github.com/ropensci/rcrossref)
+[crossref](https://www.crossref.org/) offers web service to retrieve metadata from DOI.
+
+[rcrossref](https://github.com/ropensci/rcrossref) is a R package based on this web service.
 
 
 ## Retrieve data
 
-Install the package
+### Install the package
 
 ```r
 install.packages('rcrossref')
 ```
 
-```{r ex1}
+```{r}
 library('rcrossref')
-vecDOI <- cr_r(10)
+vecDOI <- cr_r(3)
 vecDOI[1]
 ```
 
-## Retrieve data
+## Get the bibtex from DOI
 
+### `Bibtex` is a suitable format (supported by Mendeley) which contains all the metadata of an article.
 
-```{r ex2}
-bib1 = cr_cn(vecDOI[1], format='bibentry')
+```{r}
+bib1 <- cr_cn(vecDOI[1], format='bibentry')
 str(bib1)
 ```
 
-## Retrieve data
+Other format are accessible: TODO
 
-```{r ex3}
+## Get the bibtex from DOI
+
+### Looping of the DOI vector
+
+```{r}
 lsf <- lapply(vecDOI, cr_cn, format="bibentry")
+nlevels(lsf)
+```
+
+## Access the metadata
+
+### Get the author of each articles
+
+```{r}
 lsaut <- lapply(lsf, function(x) x$author)
+```
+
+### Get the journal of each articles
+
+```{r}
 lsjnl <- lapply(lsf, function(x) x$journal)
 ```
 
-## Retrieve data
+## Perform queries
 
 ```{r ex4}
 unlist(lsjnl)
 ```
+
+## Export to csv format
+
+## Export to bibtex format
+
+## Bibliometric studies
+
+<!-- Mettre figure du papier CCvsBL -->

@@ -1,5 +1,5 @@
 ---
-title: 'Importing and Merging spreadsheets <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_bib)'
+title: 'Importing and Merging spreadsheets <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_meta_analysis)'
 date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
 author: 'Steve Vissault and Kevin Cazelles'
 # lang: french
@@ -89,26 +89,13 @@ data <- gs_read(ss=worksheet, ws = "Sheet1", verbose=FALSE)
 - Everyone can work on the same worksheet and avoid conflicts
 - Individual sheet are easily accessible
 
-## Scenario 2.
+# Scenario 2. Each collaborator works on _different spreadsheets_
 
-### List the sheets inside the google doc
+## Scenario 2. Each collaborator works on _different spreadsheets_
 
-### Import CSV files
+### **Note: For this scenario, I assume that headers are consistent among files.**
 
-```r
-data <- read.csv('file.csv')
-```
-
-### Import `.xlsx` files (requires java `sudo R CMD javareconf`):
-
-```r
-install.packages('xlsx')
-data <- read.xlsx('file.csv')
-```
-
-## First scenario: Each collaborator works on different spreadsheet
-
-### Import CSV files
+### Import a flat file (csv format for instance)
 
 ```r
 data <- read.csv('file.csv')
@@ -121,74 +108,40 @@ install.packages('xlsx')
 data <- read.xlsx('file.csv')
 ```
 
+## Scenario 2. Each collaborator works on _different spreadsheets_
 
+### In a 3-4 collaborators context...
+
+```r
+data1 <- read.csv('file1.csv')
+data2 <- read.csv('file2.csv')
+data3 <- read.csv('file3.csv')
+data4 <- read.csv('file4.csv')
+```
+
+### But... if the team is 15 members (15 files)... you cannot
+
+> ### **Solution**: You have to loop over the files
 
 ## Multiple spreadsheets
 
-- Use the same headers, put them in a folder then:
+### Use the same headers, put all of them in a folder then...
 
 ```r
-fcsv <- list.files('path/to/folder', pattern='^F.*csv$', full.names=TRUE)
+# create a vector contains the path to all files
+files <- list.files('path/to/folder', pattern='^F.*csv$', full.names=TRUE)
 
-lscsv <- list()
+# Create a empty list
+ls_csv <- list()
 
-for (i in 1:length(fcsv)){
-  lscsv <- read.csv(fcsv[[i]])
+# The loop populates each level of the list with the content of each files
+for (i in 1:length(files)){
+  print(files[i])
+  ls_csv[[i]] <- read.csv(files[i])
 }
-mydat <- do.call('rbind', lscsv)
+
+# We finaly apply the function rbind at each level of the list
+data <- do.call('rbind', ls_csv)
 ```
 
-## Multiple spreadsheets
-
-
-```bash
-ssconvert -S fileIn.xlsx foldercsv/fileOut_%s.csv
-```
-
-# Google spreadsheet
-
-## Go online
-
-Show how to export them as `.csv` files.
-
-
-
-# Alternatives (may be may not be)
-
-## YAML
-
-## JSON
-
-## SQL
-
-
-
-
-
-
-
-
-
-
-
-
-## Centered
-
-<div class="centered">
-This text is centered.
-</div>
-
-
-## Example with 2 columns
-
-<div class="columns-2">
-
-  - To make it look good
-  - I changed the width of the figure  
-
-  ```{r codechunk3, echo=F, fig.width=5.5}
-  seqx <- seq(0,10,0.1)
-  plot(seqx, cos(seqx), type='h')
-  ```
-
-</div>
+# Exercice

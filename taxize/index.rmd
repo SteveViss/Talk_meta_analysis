@@ -1,5 +1,5 @@
 ---
-title: 'Why and how to use `taxize`? <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/ropensci/taxize)'
+title: 'Why and how to use `taxize`? <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_meta_analysis)'
 date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
 author: 'Steve Vissault and Kevin Cazelles'
 # lang: french
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 > taxize allows users to search over many taxonomic data sources for species names (scientific and common) and download up and downstream taxonomic hierarchical information
 
-In brief, `taxize` is a R package developed to help you managing taxonomic information.
+In brief, `taxize` is a R package developed to clean and manage taxonomic informations.
 
 ### Install taxize with
 
@@ -152,3 +152,5 @@ classification(822598, db = 'itis')
 ```{r, out.width = "100%", echo=FALSE}
 knitr::include_graphics("../assets/img/ropensci.png")
 ```
+
+# Exercice
