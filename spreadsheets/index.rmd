@@ -1,0 +1,194 @@
+---
+title: 'Importing and Merging spreadsheets <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_bib)'
+date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
+author: 'Steve Vissault and Kevin Cazelles'
+# lang: french
+output:
+    ioslides_presentation:
+        incremental: false
+        widescreen: true
+        includes:
+          in_header: ../assets/kcheader.html  
+        #logo: ./img/logo.png
+---
+
+
+```{r dsetup, results = "hide", echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  fig.align='center',
+  tidy=FALSE,
+  comment="R>> ",
+  size = 'small'
+)
+```
+
+## Two potential work scenarios
+
+**Scenario 1.**
+
+All collaborators work on the _same online collaborative spreadsheet_ (Google sheets).
+We want to upload the google spreadsheet in R to perform the analysis.
+
+**Scenario 2.**
+
+Each collaborator works on _different spreadsheet_ with the same format (template) and conventions (units).
+We want to merge all csv file into one final csv file to perform the analysis on the entire dataset.
+
+# Scenario 1. <br> All collaborators work on _google spreads_
+
+## Scenario 1. All collaborators work on _google spreads_
+
+### Login and list available worksheets
+
+```{r eval=TRUE}
+# load package
+library(googlesheets)
+
+# List available google sheets
+# Ask you to authenticate in a browser
+gs_ls()
+```
+
+## Scenario 1. All collaborators work on _google spreads_
+
+### Get your worksheet
+
+```{r}
+worksheet <- gs_title("Meta_analyses_google")
+```
+
+### List the sheets inside the worksheet
+
+```{r}
+gs_ws_ls(worksheet)
+```
+
+## Scenario 1. All collaborators work on _google spreads_
+
+### Read the sheet needed to perform the analysis
+
+```{r}
+data <- gs_read(ss=worksheet, ws = "Sheet1", verbose=FALSE)
+```
+
+## Scenario 1. All collaborators work on _google spreads_
+
+### Transform the `dplyr` object as a conventional dataset object
+
+```{r}
+(data <- as.data.frame(data))
+```
+
+### And that's it, you're all set!
+
+## Scenario 1. All collaborators work on _google spreads_
+
+### Advantages:
+
+- Secure (dataset stays on the private domain)
+- Everyone can work on the same worksheet and avoid conflicts
+- Individual sheet are easily accessible
+
+## Scenario 2.
+
+### List the sheets inside the google doc
+
+### Import CSV files
+
+```r
+data <- read.csv('file.csv')
+```
+
+### Import `.xlsx` files (requires java `sudo R CMD javareconf`):
+
+```r
+install.packages('xlsx')
+data <- read.xlsx('file.csv')
+```
+
+## First scenario: Each collaborator works on different spreadsheet
+
+### Import CSV files
+
+```r
+data <- read.csv('file.csv')
+```
+
+### Import `.xlsx` files (requires java `sudo R CMD javareconf`):
+
+```r
+install.packages('xlsx')
+data <- read.xlsx('file.csv')
+```
+
+
+
+## Multiple spreadsheets
+
+- Use the same headers, put them in a folder then:
+
+```r
+fcsv <- list.files('path/to/folder', pattern='^F.*csv$', full.names=TRUE)
+
+lscsv <- list()
+
+for (i in 1:length(fcsv)){
+  lscsv <- read.csv(fcsv[[i]])
+}
+mydat <- do.call('rbind', lscsv)
+```
+
+## Multiple spreadsheets
+
+
+```bash
+ssconvert -S fileIn.xlsx foldercsv/fileOut_%s.csv
+```
+
+# Google spreadsheet
+
+## Go online
+
+Show how to export them as `.csv` files.
+
+
+
+# Alternatives (may be may not be)
+
+## YAML
+
+## JSON
+
+## SQL
+
+
+
+
+
+
+
+
+
+
+
+
+## Centered
+
+<div class="centered">
+This text is centered.
+</div>
+
+
+## Example with 2 columns
+
+<div class="columns-2">
+
+  - To make it look good
+  - I changed the width of the figure  
+
+  ```{r codechunk3, echo=F, fig.width=5.5}
+  seqx <- seq(0,10,0.1)
+  plot(seqx, cos(seqx), type='h')
+  ```
+
+</div>
