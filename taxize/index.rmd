@@ -156,9 +156,10 @@ knitr::include_graphics("../assets/img/ropensci.png")
 ## Exercise
 
 ```r
-TODO
+sp <- c("your_favorite_sp1","your_favorite_sp1","..")
 ```
 
 1. Using the `taxize` package, clean up this vector using the `gnr_resolve()` function and ITIS as taxonomic provider.
-2. Change the provider (`data_source_ids` argument) in favor to Tropica and see what happen.
-3. Try getting higher taxonomic information for your own species list.
+2. Find the `TSN` of your favorite species
+3. Change the provider (`data_source_ids` argument) in favor to Tropica and see what happen.
+4. Try getting higher taxonomic information for your own species list.

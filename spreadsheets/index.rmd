@@ -144,7 +144,7 @@ for (i in 1:length(files)){
 data <- do.call('rbind', ls_csv)
 ```
 
-# Exercise
+## Exercise
 
 1. Create several fake files (up to 3 CSV files) with common headers
 2. Save them in a same folder

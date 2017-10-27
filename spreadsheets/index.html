@@ -106,7 +106,7 @@
 
 <p><strong>Scenario 1.</strong></p>
 
-<p>All collaborators work on the <em>same online collaborative spreadsheet</em> (Google sheets). We want to upload the google spreadsheet in R to perform the analysis.</p>
+<p>All collaborators work on the <em>same online collaborative spreadsheet</em> (Google sheets). We want to upload the google spreadsheet into R to perform the analysis.</p>
 
 <p><strong>Scenario 2.</strong></p>
 
@@ -192,12 +192,12 @@ R&gt;&gt;  2 Helianthus  annuus  canada  ontario 20       300 10.1111/1365-2745.
 <ul>
 <li>Secure (dataset stays on the private domain)</li>
 <li>Everyone can work on the same worksheet and avoid conflicts</li>
-<li>Individual sheet are easily accessible</li>
+<li>Individual sheets are easily accessible</li>
 </ul>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Scenario 2. Each collaborator works on <em>different spreadsheets</em></h2></hgroup><article  id="scenario-2.-each-collaborator-works-on-different-spreadsheets">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Scenario 2. Each collaborator works on a <em>different spreadsheet</em></h2></hgroup><article  id="scenario-2.-each-collaborator-works-on-a-different-spreadsheet">
 
-</article></slide><slide class=''><hgroup><h2>Scenario 2. Each collaborator works on <em>different spreadsheets</em></h2></hgroup><article  id="scenario-2.-each-collaborator-works-on-different-spreadsheets-1">
+</article></slide><slide class=''><hgroup><h2>Scenario 2. Each collaborator works on a <em>different spreadsheet</em></h2></hgroup><article  id="scenario-2.-each-collaborator-works-on-a-different-spreadsheet-1">
 
 <h3><strong>Note: For this scenario, I assume that headers are consistent among files.</strong></h3>
 
@@ -210,9 +210,9 @@ R&gt;&gt;  2 Helianthus  annuus  canada  ontario 20       300 10.1111/1365-2745.
 <pre class = 'prettyprint lang-r'>install.packages(&#39;xlsx&#39;)
 data &lt;- read.xlsx(&#39;file.csv&#39;)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Scenario 2. Each collaborator works on <em>different spreadsheets</em></h2></hgroup><article  id="scenario-2.-each-collaborator-works-on-different-spreadsheets-2">
+</article></slide><slide class=''><hgroup><h2>Scenario 2. Each collaborator works on a <em>different spreadsheet</em></h2></hgroup><article  id="scenario-2.-each-collaborator-works-on-a-different-spreadsheet-2">
 
-<h3>In a 3-4 collaborators context&#8230;</h3>
+<h3>With 3 to 4 collaborators&#8230;</h3>
 
 <pre class = 'prettyprint lang-r'>data1 &lt;- read.csv(&#39;file1.csv&#39;)
 data2 &lt;- read.csv(&#39;file2.csv&#39;)
@@ -229,22 +229,31 @@ data4 &lt;- read.csv(&#39;file4.csv&#39;)</pre>
 
 <h3>Use the same headers, put all of them in a folder then&#8230;</h3>
 
-<pre class = 'prettyprint lang-r'># create a vector contains the path to all files
+<pre class = 'prettyprint lang-r'># create a vector containing the paths to all files
 files &lt;- list.files(&#39;path/to/folder&#39;, pattern=&#39;^F.*csv$&#39;, full.names=TRUE)
 
 # Create a empty list
 ls_csv &lt;- list()
 
-# The loop populates each level of the list with the content of each files
+# The loop populates each level of the list with the content of each file
 for (i in 1:length(files)){
   print(files[i])
   ls_csv[[i]] &lt;- read.csv(files[i])
 }
 
-# We finaly apply the function rbind at each level of the list
+# Finally, we apply the function rbind at each level of the list
 data &lt;- do.call(&#39;rbind&#39;, ls_csv)</pre>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Exercice</h2></hgroup><article  id="exercice"></article></slide>
+</article></slide><slide class=''><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
+
+<ol>
+<li>Create several fake files (up to 3 CSV files) with common headers</li>
+<li>Save them in a same folder</li>
+<li>Open a R script</li>
+<li>Write down a function merging them (use the previous slide to help)</li>
+</ol>
+
+<p><strong>Note: Don&#39;t hesitate.. if you have any questions, we&#39;re here to help you!</strong></p></article></slide>
 
 
   <slide class="backdrop"></slide>

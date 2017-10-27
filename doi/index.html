@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Handle your references through DOI</title>
+  <title>Handle references with DOI</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,7 +20,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Handle your references through <code>DOI</code> <br> <a href="https://github.com/SteveViss/Talk_meta_analysis"><i class="fa fa-github" aria-hidden="true"></i></a>',
+                title: 'Handle references with <code>DOI</code> <br> <a href="https://github.com/SteveViss/Talk_meta_analysis"><i class="fa fa-github" aria-hidden="true"></i></a>',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -127,94 +127,59 @@
 <pre class = 'prettyprint lang-r'>install.packages(&#39;rcrossref&#39;)</pre>
 
 <pre class = 'prettyprint lang-r'>library(&#39;rcrossref&#39;)
-vecDOI &lt;- cr_r(3)
-vecDOI[1]</pre>
-
-<pre >R&gt;&gt;  [1] &quot;10.1016/j.ifacol.2016.07.466&quot;</pre>
+vecDOI &lt;- c(&#39;10.1111/brv.12359&#39;,&#39;10.1649/0010-065X-68.2.343&#39;,&#39;10.1890/14-1858.1&#39;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi">
 
 <h3><code>Bibtex</code> is a suitable format (supported by Mendeley) which contains all the metadata of an article.</h3>
 
-<pre class = 'prettyprint lang-r'>bib1 &lt;- cr_cn(vecDOI[1], format=&#39;bibentry&#39;)
-str(bib1)</pre>
+<pre class = 'prettyprint lang-r'>bib1 &lt;- cr_cn(vecDOI[1], format=&#39;bibtex&#39;, style = &quot;apa&quot;)
+bib1</pre>
 
-<pre >R&gt;&gt;  List of 1
-R&gt;&gt;   $ Atitallah_2016:Class &#39;bibentry&#39;  hidden list of 1
-R&gt;&gt;    ..$ Atitallah_2016:List of 10
-R&gt;&gt;    .. ..$ doi      : chr &quot;10.1016/j.ifacol.2016.07.466&quot;
-R&gt;&gt;    .. ..$ url      : chr &quot;https://doi.org/10.1016%2Fj.ifacol.2016.07.466&quot;
-R&gt;&gt;    .. ..$ year     : chr &quot;2016&quot;
-R&gt;&gt;    .. ..$ publisher: chr &quot;Elsevier {BV}&quot;
-R&gt;&gt;    .. ..$ volume   : chr &quot;49&quot;
-R&gt;&gt;    .. ..$ number   : chr &quot;10&quot;
-R&gt;&gt;    .. ..$ pages    : chr &quot;19--24&quot;
-R&gt;&gt;    .. ..$ author   :List of 3
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;Asma&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Atitallah&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;SaÏda&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Bedoui&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..$ :Class &#39;person&#39;  hidden list of 1
-R&gt;&gt;    .. .. .. ..$ :List of 5
-R&gt;&gt;    .. .. .. .. ..$ given  : chr &quot;Kamel&quot;
-R&gt;&gt;    .. .. .. .. ..$ family : chr &quot;Abderrahim&quot;
-R&gt;&gt;    .. .. .. .. ..$ role   : NULL
-R&gt;&gt;    .. .. .. .. ..$ email  : NULL
-R&gt;&gt;    .. .. .. .. ..$ comment: NULL
-R&gt;&gt;    .. .. ..- attr(*, &quot;class&quot;)= chr &quot;person&quot;
-R&gt;&gt;    .. ..$ title    : chr &quot;An Optimal Two Stage Identification Algorithm for Discrete Hammerstein Time Delay Systems&quot;
-R&gt;&gt;    .. ..$ journal  : chr &quot;{IFAC}-{PapersOnLine}&quot;
-R&gt;&gt;    .. ..- attr(*, &quot;bibtype&quot;)= chr &quot;Article&quot;
-R&gt;&gt;    .. ..- attr(*, &quot;key&quot;)= chr &quot;Atitallah_2016&quot;
-R&gt;&gt;   - attr(*, &quot;class&quot;)= chr &quot;bibentry&quot;
-R&gt;&gt;   - attr(*, &quot;strings&quot;)= Named chr(0) 
-R&gt;&gt;    ..- attr(*, &quot;names&quot;)= chr(0)</pre>
+<pre >R&gt;&gt;  [1] &quot;@article{Kissling_2017,\n\tdoi = {10.1111/brv.12359},\n\turl = {https://doi.org/10.1111%2Fbrv.12359},\n\tyear = 2017,\n\tmonth = {aug},\n\tpublisher = {Wiley-Blackwell},\n\tauthor = {W. Daniel Kissling and Jorge A. Ahumada and Anne Bowser and Miguel Fernandez and N{\\&#39;{e}}stor Fern{\\&#39;{a}}ndez and Enrique Alonso Garc{\\&#39;{\\i}}a and Robert P. Guralnick and Nick J. B. Isaac and Steve Kelling and Wouter Los and Louise McRae and Jean-Baptiste Mihoub and Matthias Obst and Monica Santamaria and Andrew K. Skidmore and Kristen J. Williams and Donat Agosti and Daniel Amariles and Christos Arvanitidis and Lucy Bastin and Francesca De Leo and Willi Egloff and Jane Elith and Donald Hobern and David Martin and Henrique M. Pereira and Graziano Pesole and Johannes Peterseil and Hannu Saarenmaa and Dmitry Schigel and Dirk S. Schmeller and Nicola Segata and Eren Turak and Paul F. Uhlir and Brian Wee and Alex R. Hardisty},\n\ttitle = {Building essential biodiversity variables ({EBVs}) of species distribution and abundance at a global scale},\n\tjournal = {Biological Reviews}\n}&quot;</pre>
 
-<p>Other format are accessible: TODO</p>
+<h3>Diverse format available:</h3>
+
+<p>rdf-xml, turtle, citeproc-json, citeproc-json- ish, text, ris, bibtex (default), crossref-xml, datacite-xml,bibentry, or crossref-tdm</p>
 
 </article></slide><slide class=''><hgroup><h2>Get the bibtex from DOI</h2></hgroup><article  id="get-the-bibtex-from-doi-1">
 
 <h3>Looping of the DOI vector</h3>
 
-<pre class = 'prettyprint lang-r'>lsf &lt;- lapply(vecDOI, cr_cn, format=&quot;bibentry&quot;)
-nlevels(lsf)</pre>
+<pre class = 'prettyprint lang-r'>lsf &lt;- lapply(vecDOI, cr_cn, format=&#39;bibentry&#39;)</pre>
 
-<pre >R&gt;&gt;  [1] 0</pre>
+</article></slide><slide class=''><hgroup><h2>Get the author of each articles</h2></hgroup><article  id="get-the-author-of-each-articles">
 
-</article></slide><slide class=''><hgroup><h2>Access the metadata</h2></hgroup><article  id="access-the-metadata">
+<pre class = 'prettyprint lang-r'>lsaut &lt;- lapply(lsf, function(x) x$author)
+lsaut[1]</pre>
 
-<h3>Get the author of each articles</h3>
+<pre >R&gt;&gt;  [[1]]
+R&gt;&gt;   [1] &quot;W. Daniel Kissling&quot;         &quot;Jorge A. Ahumada&quot;          
+R&gt;&gt;   [3] &quot;Anne Bowser&quot;                &quot;Miguel Fernandez&quot;          
+R&gt;&gt;   [5] &quot;Néstor Fernández&quot;           &quot;Enrique Alonso Garc\\&#39;\\ia&quot;
+R&gt;&gt;   [7] &quot;Robert P. Guralnick&quot;        &quot;Nick J. B. Isaac&quot;          
+R&gt;&gt;   [9] &quot;Steve Kelling&quot;              &quot;Wouter Los&quot;                
+R&gt;&gt;  [11] &quot;Louise McRae&quot;               &quot;Jean-Baptiste Mihoub&quot;      
+R&gt;&gt;  [13] &quot;Matthias Obst&quot;              &quot;Monica Santamaria&quot;         
+R&gt;&gt;  [15] &quot;Andrew K. Skidmore&quot;         &quot;Kristen J. Williams&quot;       
+R&gt;&gt;  [17] &quot;Donat Agosti&quot;               &quot;Daniel Amariles&quot;           
+R&gt;&gt;  [19] &quot;Christos Arvanitidis&quot;       &quot;Lucy Bastin&quot;               
+R&gt;&gt;  [21] &quot;Francesca De Leo&quot;           &quot;Willi Egloff&quot;              
+R&gt;&gt;  [23] &quot;Jane Elith&quot;                 &quot;Donald Hobern&quot;             
+R&gt;&gt;  [25] &quot;David Martin&quot;               &quot;Henrique M. Pereira&quot;       
+R&gt;&gt;  [27] &quot;Graziano Pesole&quot;            &quot;Johannes Peterseil&quot;        
+R&gt;&gt;  [29] &quot;Hannu Saarenmaa&quot;            &quot;Dmitry Schigel&quot;            
+R&gt;&gt;  [31] &quot;Dirk S. Schmeller&quot;          &quot;Nicola Segata&quot;             
+R&gt;&gt;  [33] &quot;Eren Turak&quot;                 &quot;Paul F. Uhlir&quot;             
+R&gt;&gt;  [35] &quot;Brian Wee&quot;                  &quot;Alex R. Hardisty&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>lsaut &lt;- lapply(lsf, function(x) x$author)</pre>
+</article></slide><slide class=''><hgroup><h2>Get the journal of each articles</h2></hgroup><article  id="get-the-journal-of-each-articles">
 
-<h3>Get the journal of each articles</h3>
+<pre class = 'prettyprint lang-r'>lsjnl &lt;- lapply(lsf, function(x) x$journal)
+lsjnl[1]</pre>
 
-<pre class = 'prettyprint lang-r'>lsjnl &lt;- lapply(lsf, function(x) x$journal)</pre>
-
-</article></slide><slide class=''><hgroup><h2>Perform queries</h2></hgroup><article  id="perform-queries">
-
-<pre class = 'prettyprint lang-r'>unlist(lsjnl)</pre>
-
-<pre >R&gt;&gt;  [1] &quot;{IFAC}-{PapersOnLine}&quot;    &quot;Annals of Mathematics&quot;   
-R&gt;&gt;  [3] &quot;Seminars in Perinatology&quot;</pre>
-
-</article></slide><slide class=''><hgroup><h2>Export to csv format</h2></hgroup><article  id="export-to-csv-format">
-
-</article></slide><slide class=''><hgroup><h2>Export to bibtex format</h2></hgroup><article  id="export-to-bibtex-format">
-
-</article></slide><slide class=''><hgroup><h2>Bibliometric studies</h2></hgroup><article  id="bibliometric-studies">
-
-<!-- Mettre figure du papier CCvsBL --></article></slide>
+<pre >R&gt;&gt;  [[1]]
+R&gt;&gt;  [1] &quot;Biological Reviews&quot;</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

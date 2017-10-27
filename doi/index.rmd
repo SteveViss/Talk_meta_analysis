@@ -1,6 +1,6 @@
 ---
-title: 'Handle your references through `DOI` <br> [<i class=fa fa-github aria-hidden=true></i>](https://github.com/SteveViss/Talk_meta_analysis)'
-date: `r paste0(format(Sys.time(), '%d %B %Y'))`
+title: 'Handle references with `DOI` <br> [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/SteveViss/Talk_meta_analysis)'
+date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
 author: 'Steve Vissault and Kevin Cazelles'
 # lang: french
 output:
@@ -13,12 +13,11 @@ output:
 ---
 
 
-
-```{r dsetup, results = hide, echo = FALSE, message = FALSE}
+```{r dsetup, results = "hide", echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   fig.align='center',
   tidy=FALSE,
-  comment=R>> ,
+  comment="R>> ",
   size = 'small'
 )
 ```
@@ -56,8 +55,8 @@ vecDOI <- c('10.1111/brv.12359','10.1649/0010-065X-68.2.343','10.1890/14-1858.1'
 ### `Bibtex` is a suitable format (supported by Mendeley) which contains all the metadata of an article.
 
 ```{r}
-bib1 <- cr_cn(vecDOI[1], format='bibentry', style = "apa")
-str(bib1)
+bib1 <- cr_cn(vecDOI[1], format='bibtex', style = "apa")
+bib1
 ```
 
 ### Diverse format available:
@@ -71,8 +70,7 @@ or crossref-tdm
 ### Looping of the DOI vector
 
 ```{r}
-lsf <- lapply(vecDOI, cr_cn, format=bibentry)
-nlevels(lsf)
+lsf <- lapply(vecDOI, cr_cn, format='bibentry')
 ```
 
 ## Get the author of each articles
@@ -88,13 +86,3 @@ lsaut[1]
 lsjnl <- lapply(lsf, function(x) x$journal)
 lsjnl[1]
 ```
-
-## Perform queries
-
-```{r}
-cr_cn(query="biodiversity")
-```
-
-## Bibliometric studies
-
-![](../assets/img/ccvspb.png)
